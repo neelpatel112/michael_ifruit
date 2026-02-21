@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Michael De Santa's iFruit Phone</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="gta-bg"></div>
+    
+    <div class="phone-container">
+        <!-- Phone Speaker -->
+        <div class="speaker"></div>
+        
+        <!-- Front Camera -->
+        <div class="front-camera"></div>
+        
+        <div class="phone-frame">
+            <!-- Status Bar -->
+            <div class="status-bar">
+                <div class="status-left">
+                    <span class="signal">📶</span>
+                    <span class="carrier">iFruit</span>
+                </div>
+                <div class="status-center">
+                    <span class="time">12:00</span>
+                </div>
+                <div class="status-right">
+                    <span class="battery">🔋 100%</span>
+                </div>
+            </div>
+
+            <!-- Main Screen -->
+            <div class="screen" id="screen">
+                <!-- Home Screen (Default) -->
+                <div class="home-screen active" id="homeScreen">
+                    <!-- Michael's Face Wallpaper -->
+                    <div class="wallpaper">
+                        <div class="wallpaper-overlay"></div>
+                        <div class="wallpaper-text">MICHAEL</div>
+                    </div>
+                    
+                    <!-- App Grid -->
+                    <div class="app-grid">
+                        <div class="app-icon" data-app="phone">
+                            <div class="icon-bg" style="background: #4cd964;">
+                                <span class="icon">📞</span>
+                            </div>
+                            <span class="app-name">Phone</span>
+                        </div>
+                        
+                        <div class="app-icon" data-app="messages">
+                            <div class="icon-bg" style="background: #007aff;">
+                                <span class="icon">💬</span>
+                            </div>
+                            <span class="app-name">Messages</span>
+                        </div>
+                        
+                        <div class="app-icon" data-app="contacts">
+                            <div class="icon-bg" style="background: #5856d6;">
+                                <span class="icon">👥</span>
+                            </div>
+                            <span class="app-name">Contacts</span>
+                        </div>
+                        
+                        <div class="app-icon" data-app="internet">
+                            <div class="icon-bg" style="background: #ff9500;">
+                                <span class="icon">🌐</span>
+                            </div>
+                            <span class="app-name">Internet</span>
+                        </div>
+                        
+                        <div class="app-icon" data-app="camera">
+                            <div class="icon-bg" style="background: #ff3b30;">
+                                <span class="icon">📷</span>
+                            </div>
+                            <span class="app-name">Camera</span>
+                        </div>
+                        
+                        <div class="app-icon" data-app="photos">
+                            <div class="icon-bg" style="background: #ff2d55;">
+                                <span class="icon">🖼️</span>
+                            </div>
+                            <span class="app-name">Photos</span>
+                        </div>
+                        
+                        <div class="app-icon" data-app="mail">
+                            <div class="icon-bg" style="background: #5e5e5e;">
+                                <span class="icon">✉️</span>
+                            </div>
+                            <span class="app-name">Mail</span>
+                        </div>
+                        
+                        <div class="app-icon" data-app="settings">
+                            <div class="icon-bg" style="background: #8e8e93;">
+                                <span class="icon">⚙️</span>
+                            </div>
+                            <span class="app-name">Settings</span>
+                        </div>
+                        
+                        <div class="app-icon" data-app="maps">
+                            <div class="icon-bg" style="background: #34c759;">
+                                <span class="icon">🗺️</span>
+                            </div>
+                            <span class="app-name">Maps</span>
+                        </div>
+                        
+                        <div class="app-icon" data-app="music">
+                            <div class="icon-bg" style="background: #ff6482;">
+                                <span class="icon">🎵</span>
+                            </div>
+                            <span class="app-name">Music</span>
+                        </div>
+                        
+                        <div class="app-icon" data-app="snapmatic">
+                            <div class="icon-bg" style="background: #64d2ff;">
+                                <span class="icon">📸</span>
+                            </div>
+                            <span class="app-name">Snapmatic</span>
+                        </div>
+                        
+                        <div class="app-icon" data-app="clock">
+                            <div class="icon-bg" style="background: #ff9f0a;">
+                                <span class="icon">⏰</span>
+                            </div>
+                            <span class="app-name">Clock</span>
+                        </div>
+                    </div>
+
+                    <!-- Dock -->
+                    <div class="dock">
+                        <div class="app-icon" data-app="phone">
+                            <div class="icon-bg" style="background: #4cd964;">
+                                <span class="icon">📞</span>
+                            </div>
+                        </div>
+                        <div class="app-icon" data-app="messages">
+                            <div class="icon-bg" style="background: #007aff;">
+                                <span class="icon">💬</span>
+                            </div>
+                        </div>
+                        <div class="app-icon" data-app="contacts">
+                            <div class="icon-bg" style="background: #5856d6;">
+                                <span class="icon">👥</span>
+                            </div>
+                        </div>
+                        <div class="app-icon" data-app="internet">
+                            <div class="icon-bg" style="background: #ff9500;">
+                                <span class="icon">🌐</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contacts App -->
+                <div class="app-screen contacts-app" id="contactsScreen">
+                    <div class="app-header">
+                        <button class="back-btn" onclick="phone.goHome()">←</button>
+                        <h2>Contacts</h2>
+                        <button class="add-btn">+</button>
+                    </div>
+                    <div class="contacts-list" id="contactsList"></div>
+                </div>
+
+                <!-- Messages App -->
+                <div class="app-screen messages-app" id="messagesScreen">
+                    <div class="app-header">
+                        <button class="back-btn" onclick="phone.goHome()">←</button>
+                        <h2>Messages</h2>
+                        <button class="new-btn">✏️</button>
+                    </div>
+                    <div class="conversations-list" id="conversationsList"></div>
+                </div>
+
+                <!-- Chat Window -->
+                <div class="app-screen chat-app" id="chatScreen">
+                    <div class="app-header">
+                        <button class="back-btn" onclick="phone.showMessages()">←</button>
+                        <h2 id="chatContactName">Jimmy</h2>
+                    </div>
+                    <div class="chat-messages" id="chatMessages"></div>
+                    <div class="chat-input">
+                        <input type="text" id="messageInput" placeholder="iMessage">
+                        <button onclick="phone.sendMessage()">Send</button>
+                    </div>
+                </div>
+
+                <!-- Phone App -->
+                <div class="app-screen phone-app" id="phoneApp">
+                    <div class="app-header">
+                        <button class="back-btn" onclick="phone.goHome()">←</button>
+                        <h2>Phone</h2>
+                    </div>
+                    <div class="keypad">
+                        <div class="call-log">
+                            <h3>Recent Calls</h3>
+                            <div class="call-item">
+                                <span class="call-name">Amanda</span>
+                                <span class="call-time">Today, 10:30</span>
+                            </div>
+                            <div class="call-item">
+                                <span class="call-name">Jimmy</span>
+                                <span class="call-time">Yesterday</span>
+                            </div>
+                            <div class="call-item">
+                                <span class="call-name">Lester</span>
+                                <span class="call-time">2 days ago</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Internet App -->
+                <div class="app-screen internet-app" id="internetApp">
+                    <div class="app-header">
+                        <button class="back-btn" onclick="phone.goHome()">←</button>
+                        <h2>EyeFind</h2>
+                    </div>
+                    <div class="browser">
+                        <div class="url-bar">
+                            <input type="text" value="www.eyefind.info" readonly>
+                        </div>
+                        <div class="web-content">
+                            <h2 style="color: #ff9500;">EyeFind</h2>
+                            <p>Welcome to the internet!</p>
+                            <div class="search-box">
+                                <input type="text" placeholder="Search EyeFind...">
+                            </div>
+                            <div class="quick-links">
+                                <div class="quick-link">Bleeter</div>
+                                <div class="quick-link">Lifeinvader</div>
+                                <div class="quick-link">Dynasty 8</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Home Button -->
+            <div class="home-button" id="homeButton"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
