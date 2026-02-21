@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Michael De Santa's iFruit Phone</title>
+    <title>Michael De Santa's iFruit Phone - Complete GTA Internet</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -211,28 +211,100 @@
                     </div>
                 </div>
 
-                <!-- Internet App -->
+                <!-- Internet App with Full Browser -->
                 <div class="app-screen internet-app" id="internetApp">
                     <div class="app-header">
                         <button class="back-btn" onclick="phone.goHome()">←</button>
-                        <h2>EyeFind</h2>
-                    </div>
-                    <div class="browser">
+                        <button class="browser-back" onclick="phone.browserGoBack()">↩️</button>
                         <div class="url-bar">
-                            <input type="text" value="www.eyefind.info" readonly>
+                            <input type="text" id="urlInput" value="www.eyefind.info" onkeypress="phone.handleUrlSubmit(event)">
                         </div>
-                        <div class="web-content">
-                            <h2 style="color: #ff9500;">EyeFind</h2>
-                            <p>Welcome to the internet!</p>
-                            <div class="search-box">
-                                <input type="text" placeholder="Search EyeFind...">
+                        <button class="refresh-btn" onclick="phone.refreshBrowser()">↻</button>
+                    </div>
+                    
+                    <!-- Browser Content -->
+                    <div class="browser-content" id="browserContent">
+                        <!-- EyeFind Homepage (Default) -->
+                        <div class="eyefind-homepage" id="eyefindHomepage">
+                            <div class="eyefind-header">
+                                <h1>EyeFind</h1>
+                                <p class="tagline">Find it. See it. EyeFind.</p>
                             </div>
+                            
+                            <div class="search-section">
+                                <input type="text" class="search-bar" placeholder="Search EyeFind..." id="eyefindSearch" onkeypress="phone.handleSearch(event)">
+                                <button class="search-btn" onclick="phone.performSearch()">Search</button>
+                            </div>
+                            
                             <div class="quick-links">
-                                <div class="quick-link">Bleeter</div>
-                                <div class="quick-link">Lifeinvader</div>
-                                <div class="quick-link">Dynasty 8</div>
+                                <h3>Quick Links</h3>
+                                <div class="link-grid">
+                                    <div class="quick-link" onclick="phone.navigateTo('lifeinvader')">
+                                        <span class="link-icon">👔</span>
+                                        <span>Lifeinvader</span>
+                                    </div>
+                                    <div class="quick-link" onclick="phone.navigateTo('warstock')">
+                                        <span class="link-icon">🔫</span>
+                                        <span>Warstock</span>
+                                    </div>
+                                    <div class="quick-link" onclick="phone.navigateTo('fleeca')">
+                                        <span class="link-icon">🏦</span>
+                                        <span>Fleeca</span>
+                                    </div>
+                                    <div class="quick-link" onclick="phone.navigateTo('poleposition')">
+                                        <span class="link-icon">💃</span>
+                                        <span>Pole Position</span>
+                                    </div>
+                                    <div class="quick-link" onclick="phone.navigateTo('bawsaq')">
+                                        <span class="link-icon">📈</span>
+                                        <span>BAWSAQ</span>
+                                    </div>
+                                    <div class="quick-link" onclick="phone.navigateTo('lcn')">
+                                        <span class="link-icon">📊</span>
+                                        <span>LCN</span>
+                                    </div>
+                                    <div class="quick-link" onclick="phone.navigateTo('weasel')">
+                                        <span class="link-icon">📰</span>
+                                        <span>Weasel News</span>
+                                    </div>
+                                    <div class="quick-link" onclick="phone.navigateTo('supersleep')">
+                                        <span class="link-icon">😴</span>
+                                        <span>Super Sleep</span>
+                                    </div>
+                                    <div class="quick-link" onclick="phone.navigateTo('epsilon')">
+                                        <span class="link-icon">🔺</span>
+                                        <span>Epsilon</span>
+                                    </div>
+                                    <div class="quick-link" onclick="phone.navigateTo('eyepatch')">
+                                        <span class="link-icon">🏴‍☠️</span>
+                                        <span>EyePatch</span>
+                                    </div>
+                                    <div class="quick-link" onclick="phone.navigateTo('suspect')">
+                                        <span class="link-icon">🔒</span>
+                                        <span>Suspect Security</span>
+                                    </div>
+                                    <div class="quick-link" onclick="phone.navigateTo('tongue')">
+                                        <span class="link-icon">👅</span>
+                                        <span>Tongue</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="featured-stories">
+                                <h3>Featured Stories</h3>
+                                <div class="story-card">
+                                    <h4>Celebrity Robbery in Vinewood Hills</h4>
+                                    <p>Another mansion hit - police suspect professional crew...</p>
+                                </div>
+                                <div class="story-card">
+                                    <h4>BAWSAQ Hits New Record</h4>
+                                    <p>Stock market continues to climb...</p>
+                                </div>
                             </div>
                         </div>
+                        
+                        <!-- Website Containers (will be populated by JS) -->
+                        <div id="websiteContainer"></div>
                     </div>
                 </div>
             </div>
@@ -244,4 +316,4 @@
 
     <script src="script.js"></script>
 </body>
-</html> 
+</html>

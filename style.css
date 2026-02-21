@@ -542,3 +542,366 @@ body {
         transform: translateX(100%);
     }
 } 
+
+
+/* Add to existing style.css */
+
+/* Browser Styles */
+.browser-content {
+    height: calc(100% - 60px);
+    overflow-y: auto;
+    background: white;
+    padding: 15px;
+}
+
+.eyefind-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.eyefind-header h1 {
+    font-size: 48px;
+    color: #ff9500;
+    font-weight: 800;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+.tagline {
+    color: #666;
+    font-style: italic;
+}
+
+.search-section {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.search-bar, .url-bar input {
+    flex: 1;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 25px;
+    font-size: 16px;
+}
+
+.search-btn, .refresh-btn {
+    padding: 12px 20px;
+    background: #ff9500;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+.link-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.quick-link {
+    background: #f5f5f5;
+    padding: 15px 10px;
+    text-align: center;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.quick-link:hover {
+    transform: scale(1.05);
+    background: #e5e5e5;
+}
+
+.link-icon {
+    font-size: 24px;
+}
+
+.featured-stories {
+    margin-top: 30px;
+}
+
+.story-card {
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 10px;
+    margin: 10px 0;
+    border-left: 4px solid #ff9500;
+}
+
+/* Website Specific Styles */
+.website-page {
+    animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Lifeinvader */
+.lifeinvader-page {
+    background: #1877f2;
+    color: white;
+    min-height: 100%;
+    padding: 15px;
+}
+
+.lifeinvader-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.lifeinvader-posts {
+    background: white;
+    border-radius: 10px;
+    padding: 15px;
+    color: black;
+}
+
+.lifeinvader-post {
+    border-bottom: 1px solid #eee;
+    padding: 15px 0;
+}
+
+/* Warstock */
+.warstock-page {
+    background: linear-gradient(145deg, #2d5a27, #1a3a1a);
+    color: #ffd700;
+    padding: 15px;
+}
+
+.warstock-item {
+    background: rgba(0,0,0,0.5);
+    border: 1px solid #ffd700;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 5px;
+}
+
+.buy-btn {
+    background: #ffd700;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+/* Fleeca Bank */
+.fleeca-page {
+    background: linear-gradient(145deg, #0047ab, #002d6d);
+    color: white;
+    padding: 15px;
+}
+
+.account-balance {
+    font-size: 32px;
+    text-align: center;
+    margin: 20px 0;
+    color: #ffd700;
+}
+
+/* Pole Position */
+.poleposition-page {
+    background: #1a1a1a;
+    color: #ff69b4;
+    padding: 15px;
+    text-align: center;
+}
+
+.poleposition-page h1 {
+    font-family: 'Courier New', monospace;
+    text-transform: uppercase;
+    border: 2px solid #ff69b4;
+    padding: 10px;
+}
+
+/* BAWSAQ */
+.bawsaq-page {
+    background: #0a0a0a;
+    color: #00ff00;
+    padding: 15px;
+    font-family: 'Courier New', monospace;
+}
+
+.stock-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.stock-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid #00ff00;
+}
+
+.stock-up {
+    color: #00ff00;
+}
+
+.stock-down {
+    color: #ff0000;
+}
+
+/* LCN */
+.lcn-page {
+    background: #1e3a5f;
+    color: white;
+    padding: 15px;
+}
+
+/* Weasel News */
+.weasel-page {
+    background: white;
+    padding: 15px;
+}
+
+.weasel-header {
+    background: #cc0000;
+    color: white;
+    padding: 10px;
+    margin: -15px -15px 15px -15px;
+}
+
+.news-article {
+    border-bottom: 1px solid #ddd;
+    padding: 15px 0;
+}
+
+/* Super Sleep */
+.supersleep-page {
+    background: linear-gradient(145deg, #4a4a6a, #2a2a4a);
+    color: #b0e0e6;
+    padding: 15px;
+    text-align: center;
+}
+
+.mattress-option {
+    background: rgba(255,255,255,0.1);
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 10px;
+}
+
+/* Epsilon */
+.epsilon-page {
+    background: linear-gradient(145deg, #8b4513, #5d2e0f);
+    color: #ffd700;
+    padding: 15px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.epsilon-page::before {
+    content: '🔺';
+    position: absolute;
+    font-size: 150px;
+    opacity: 0.1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.epsilon-text {
+    font-size: 24px;
+    margin: 30px 0;
+    font-style: italic;
+}
+
+.join-btn {
+    background: #ffd700;
+    color: #8b4513;
+    border: none;
+    padding: 20px 40px;
+    font-size: 20px;
+    border-radius: 30px;
+    cursor: pointer;
+    margin: 20px 0;
+}
+
+/* EyePatch */
+.eyepatch-page {
+    background: linear-gradient(145deg, #2c3e50, #1a2632);
+    color: #3498db;
+    padding: 15px;
+}
+
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.video-thumb {
+    background: #34495e;
+    aspect-ratio: 16/9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+}
+
+/* Suspect Security */
+.suspect-page {
+    background: #1a1a1a;
+    color: #00ff00;
+    padding: 15px;
+    font-family: 'Courier New', monospace;
+}
+
+.security-cam {
+    background: #000;
+    border: 2px solid #00ff00;
+    aspect-ratio: 4/3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+/* Tongue */
+.tongue-page {
+    background: linear-gradient(145deg, #ff69b4, #ff1493);
+    color: white;
+    padding: 15px;
+    text-align: center;
+}
+
+.tongue-header {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+/* Browser Navigation */
+.browser-back {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 5px 10px;
+    margin-right: 5px;
+}
+
+.url-bar {
+    flex: 1;
+    margin: 0 10px;
+}
+
+.url-bar input {
+    width: 100%;
+    padding: 8px 15px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+} 
