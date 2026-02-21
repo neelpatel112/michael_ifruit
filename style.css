@@ -1037,3 +1037,306 @@ body {
 
 /* Rest of your existing styles below */
 /* ... (keep all your existing styles) ... */ 
+
+
+
+
+/* Radio App Styles */
+.radio-app {
+    background: linear-gradient(145deg, #0a0f1a, #1a1f2a);
+    color: white;
+}
+
+.radio-container {
+    padding: 15px;
+    overflow-y: auto;
+    height: calc(100% - 60px);
+    padding-bottom: 30px;
+}
+
+.now-playing-card {
+    background: linear-gradient(145deg, #2a2f3a, #1a1f2a);
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+.station-logo {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(145deg, #ff3b30, #ff5e4a);
+    border-radius: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    box-shadow: 0 5px 15px rgba(255,59,48,0.3);
+}
+
+.song-info {
+    flex: 1;
+}
+
+.song-info h3 {
+    font-size: 20px;
+    margin-bottom: 5px;
+    color: #ff9500;
+    font-weight: bold;
+}
+
+.song-info p {
+    font-size: 14px;
+    color: #ccc;
+    margin: 3px 0;
+}
+
+/* Equalizer Animation */
+.equalizer {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    height: 30px;
+    margin-top: 10px;
+}
+
+.equalizer span {
+    width: 4px;
+    height: 15px;
+    background: #4cd964;
+    border-radius: 2px;
+    animation: equalize 1.2s infinite ease-in-out;
+}
+
+.equalizer span:nth-child(1) { animation-delay: 0s; }
+.equalizer span:nth-child(2) { animation-delay: 0.2s; }
+.equalizer span:nth-child(3) { animation-delay: 0.4s; }
+.equalizer span:nth-child(4) { animation-delay: 0.6s; }
+.equalizer span:nth-child(5) { animation-delay: 0.8s; }
+
+@keyframes equalize {
+    0%, 100% { height: 10px; }
+    50% { height: 25px; }
+}
+
+/* Player Controls */
+.player-controls {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.control-btn {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    flex: 1;
+    min-width: 100px;
+    font-size: 16px;
+    transition: transform 0.2s;
+}
+
+.control-btn:hover {
+    transform: scale(1.05);
+}
+
+.control-btn:active {
+    transform: scale(0.95);
+}
+
+.play-btn {
+    background: linear-gradient(145deg, #4cd964, #34c759);
+    color: white;
+}
+
+.play-btn.playing {
+    background: linear-gradient(145deg, #ff9500, #ff3b30);
+}
+
+.stop-btn {
+    background: linear-gradient(145deg, #ff3b30, #ff5e4a);
+    color: white;
+}
+
+.volume-control {
+    flex: 2;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255,255,255,0.1);
+    padding: 8px 15px;
+    border-radius: 25px;
+    min-width: 150px;
+}
+
+.volume-slider {
+    flex: 1;
+    height: 5px;
+    border-radius: 5px;
+    background: linear-gradient(90deg, #4cd964, #ff9500, #ff3b30);
+    -webkit-appearance: none;
+}
+
+.volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: white;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+/* Status Message */
+.status-message {
+    background: rgba(255,255,255,0.1);
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 13px;
+    color: #4cd964;
+    border-left: 3px solid #4cd964;
+}
+
+/* Station Categories */
+.station-categories {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+    overflow-x: auto;
+    padding-bottom: 5px;
+}
+
+.category-btn {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.1);
+    color: white;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.category-btn.active {
+    background: #ff3b30;
+    color: white;
+    box-shadow: 0 2px 8px rgba(255,59,48,0.3);
+}
+
+.category-btn:hover {
+    background: rgba(255,255,255,0.2);
+}
+
+/* Stations List */
+.stations-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 15px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.station-item {
+    background: rgba(255,255,255,0.05);
+    border-radius: 15px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+.station-item:hover {
+    background: rgba(255,255,255,0.1);
+    transform: translateX(5px);
+}
+
+.station-item.playing {
+    background: rgba(255,59,48,0.2);
+    border: 1px solid #ff3b30;
+    box-shadow: 0 0 15px rgba(255,59,48,0.2);
+}
+
+.station-icon {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(145deg, #ff3b30, #ff5e4a);
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+}
+
+.station-details {
+    flex: 1;
+}
+
+.station-name {
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 3px;
+    color: white;
+}
+
+.station-frequency {
+    color: #ff9500;
+    font-size: 13px;
+    margin-bottom: 2px;
+    font-weight: 500;
+}
+
+.station-genre {
+    color: #999;
+    font-size: 11px;
+    text-transform: uppercase;
+}
+
+.play-indicator {
+    color: #4cd964;
+    font-size: 20px;
+    margin-left: 10px;
+}
+
+/* Connection Notice */
+.connection-notice {
+    background: rgba(0,0,0,0.3);
+    padding: 8px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 11px;
+    color: #999;
+    margin-top: 10px;
+}
+
+/* Scrollbar Styling */
+.stations-list::-webkit-scrollbar {
+    width: 5px;
+}
+
+.stations-list::-webkit-scrollbar-track {
+    background: rgba(255,255,255,0.05);
+}
+
+.stations-list::-webkit-scrollbar-thumb {
+    background: #ff3b30;
+    border-radius: 5px;
+}
+
+/* Keep all your existing styles below */ 

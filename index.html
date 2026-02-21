@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Michael De Santa's iFruit Phone - Complete GTA Internet</title>
+    <title>Michael De Santa's iFruit Phone - Working Radio!</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -84,6 +84,14 @@
                                 <span class="icon">🖼️</span>
                             </div>
                             <span class="app-name">Photos</span>
+                        </div>
+                        
+                        <!-- NEW RADIO APP ICON -->
+                        <div class="app-icon" data-app="radio">
+                            <div class="icon-bg" style="background: #ff3b30;">
+                                <span class="icon">📻</span>
+                            </div>
+                            <span class="app-name">Radio</span>
                         </div>
                         
                         <div class="app-icon" data-app="mail">
@@ -243,6 +251,69 @@
                     </div>
                 </div>
 
+                <!-- RADIO APP - FULLY WORKING! -->
+                <div class="app-screen radio-app" id="radioApp">
+                    <div class="app-header">
+                        <button class="back-btn" onclick="phone.goHome()">←</button>
+                        <h2>🎵 LA Radio Stations</h2>
+                        <span class="now-playing" id="nowPlayingIndicator">⏹️ Stopped</span>
+                    </div>
+                    
+                    <div class="radio-container">
+                        <!-- Now Playing Card -->
+                        <div class="now-playing-card" id="nowPlayingCard">
+                            <div class="station-logo" id="stationLogo">📻</div>
+                            <div class="song-info">
+                                <h3 id="currentStation">Select a Station</h3>
+                                <p id="currentFrequency">-</p>
+                                <p id="currentGenre">-</p>
+                                <div class="equalizer" id="equalizer">
+                                    <span></span><span></span><span></span><span></span><span></span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Player Controls -->
+                        <div class="player-controls">
+                            <button class="control-btn play-btn" id="playPauseBtn" onclick="phone.togglePlay()">
+                                ▶️ PLAY
+                            </button>
+                            <button class="control-btn stop-btn" onclick="phone.stopRadio()">
+                                ⏹️ STOP
+                            </button>
+                            <div class="volume-control">
+                                <span>🔊</span>
+                                <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="70" oninput="phone.setVolume(this.value)">
+                            </div>
+                        </div>
+                        
+                        <!-- Status Message -->
+                        <div class="status-message" id="radioStatus">
+                            Ready to play
+                        </div>
+                        
+                        <!-- Station Categories -->
+                        <div class="station-categories">
+                            <button class="category-btn active" onclick="phone.filterStations('all')">ALL</button>
+                            <button class="category-btn" onclick="phone.filterStations('pop')">POP</button>
+                            <button class="category-btn" onclick="phone.filterStations('rock')">ROCK</button>
+                            <button class="category-btn" onclick="phone.filterStations('hiphop')">HIP HOP</button>
+                            <button class="category-btn" onclick="phone.filterStations('alternative')">ALTERNATIVE</button>
+                            <button class="category-btn" onclick="phone.filterStations('college')">COLLEGE</button>
+                        </div>
+                        
+                        <!-- Stations List -->
+                        <div class="stations-list" id="stationsList">
+                            <!-- Stations will be loaded here -->
+                        </div>
+                        
+                        <!-- Connection Notice -->
+                        <div class="connection-notice" id="connectionNotice">
+                            <p>📡 Streaming requires internet connection</p>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Internet App with Full Browser -->
                 <div class="app-screen internet-app" id="internetApp">
                     <div class="app-header">
@@ -348,4 +419,4 @@
 
     <script src="script.js"></script>
 </body>
-</html>
+</html> 
