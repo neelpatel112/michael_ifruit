@@ -2,6 +2,9 @@ class MichaelPhone {
     constructor() {
         this.currentScreen = 'home';
         this.currentChat = null;
+        this.currentPhotoIndex = 0;
+        this.totalPhotos = 10;
+        
         this.browserHistory = ['eyefind'];
         this.browserIndex = 0;
         
@@ -450,15 +453,16 @@ class MichaelPhone {
             case 'phone':
                 this.showScreen('phoneApp');
                 break;
+            case 'photos':
+                this.showScreen('photosApp');
+                this.loadPhotos();
+                break;
             case 'internet':
                 this.showScreen('internetApp');
                 this.showEyeFind();
                 break;
             case 'camera':
                 alert('📷 Camera app - Say cheese! Michael style!');
-                break;
-            case 'photos':
-                alert('🖼️ Photos - All your memories in one place');
                 break;
             case 'snapmatic':
                 alert('📸 Snapmatic - Share your best Vinewood moments!');
@@ -504,6 +508,66 @@ class MichaelPhone {
         this.currentScreen = 'home';
     }
     
+    // Photos App Functions
+    loadPhotos() {
+        const photoGrid = document.getElementById('photoGrid');
+        if (!photoGrid) return;
+        
+        let photosHtml = '';
+        for (let i = 1; i <= this.totalPhotos; i++) {
+            photosHtml += `
+                <div class="photo-item" onclick="phone.openPhoto(${i})">
+                    <img src="photos/${i}.jpg" alt="Photo ${i}" onerror="this.src='https://via.placeholder.com/200/1a6a3a/ffffff?text=Photo+${i}'">
+                </div>
+            `;
+        }
+        
+        photoGrid.innerHTML = photosHtml;
+        document.getElementById('photoCount').textContent = `${this.totalPhotos} photos`;
+    }
+    
+    openPhoto(index) {
+        this.currentPhotoIndex = index;
+        document.getElementById('fullscreenPhoto').src = `photos/${index}.jpg`;
+        document.getElementById('photoName').textContent = `Photo ${index}`;
+        document.getElementById('photoCounter').textContent = `${index}/${this.totalPhotos}`;
+        
+        // Add date (you can customize this)
+        const dates = ['Jan 15', 'Jan 23', 'Feb 1', 'Feb 14', 'Mar 3', 'Mar 18', 'Apr 2', 'Apr 20', 'May 5', 'May 12'];
+        document.getElementById('photoDate').textContent = dates[index - 1] || 'Today';
+        
+        document.getElementById('photosApp').classList.remove('active');
+        document.getElementById('photoViewer').classList.add('active');
+    }
+    
+    closePhotoViewer() {
+        document.getElementById('photoViewer').classList.remove('active');
+        document.getElementById('photosApp').classList.add('active');
+    }
+    
+    prevPhoto() {
+        if (this.currentPhotoIndex > 1) {
+            this.currentPhotoIndex--;
+            this.updatePhotoViewer();
+        }
+    }
+    
+    nextPhoto() {
+        if (this.currentPhotoIndex < this.totalPhotos) {
+            this.currentPhotoIndex++;
+            this.updatePhotoViewer();
+        }
+    }
+    
+    updatePhotoViewer() {
+        document.getElementById('fullscreenPhoto').src = `photos/${this.currentPhotoIndex}.jpg`;
+        document.getElementById('photoName').textContent = `Photo ${this.currentPhotoIndex}`;
+        document.getElementById('photoCounter').textContent = `${this.currentPhotoIndex}/${this.totalPhotos}`;
+        
+        const dates = ['Jan 15', 'Jan 23', 'Feb 1', 'Feb 14', 'Mar 3', 'Mar 18', 'Apr 2', 'Apr 20', 'May 5', 'May 12'];
+        document.getElementById('photoDate').textContent = dates[this.currentPhotoIndex - 1] || 'Today';
+    }
+    
     // Browser Functions
     showEyeFind() {
         document.getElementById('eyefindHomepage').style.display = 'block';
@@ -519,7 +583,6 @@ class MichaelPhone {
             document.getElementById('websiteContainer').innerHTML = this.websites[siteKey].content;
             document.getElementById('urlInput').value = `www.${siteKey}.com`;
             
-            // Add to history
             this.browserHistory.push(siteKey);
             this.browserIndex = this.browserHistory.length - 1;
         }
@@ -534,7 +597,6 @@ class MichaelPhone {
     performSearch() {
         const searchTerm = document.getElementById('eyefindSearch').value.toLowerCase().trim();
         
-        // Check if search matches any website
         if (searchTerm.includes('lifeinvader') || searchTerm.includes('social')) {
             this.navigateTo('lifeinvader');
         } else if (searchTerm.includes('warstock') || searchTerm.includes('weapon') || searchTerm.includes('gun')) {
@@ -568,7 +630,6 @@ class MichaelPhone {
         if (event.key === 'Enter') {
             const url = event.target.value.toLowerCase();
             
-            // Check if URL matches any site
             for (let key in this.websites) {
                 if (url.includes(key)) {
                     this.navigateTo(key);

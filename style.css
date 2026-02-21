@@ -916,3 +916,124 @@ body {
     border: 1px solid #ddd;
     border-radius: 20px;
 } 
+
+/* Add to existing style.css */
+
+/* Photos App */
+.photos-app {
+    background: white;
+}
+
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    padding: 2px;
+    overflow-y: auto;
+}
+
+.photo-item {
+    aspect-ratio: 1/1;
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+}
+
+.photo-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.photo-item:hover img {
+    transform: scale(1.1);
+}
+
+.photo-item::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(145deg, transparent 50%, rgba(0,0,0,0.1) 100%);
+    pointer-events: none;
+}
+
+.photo-count {
+    font-size: 14px;
+    color: #666;
+    margin-right: 15px;
+}
+
+/* Photo Viewer */
+.photo-viewer {
+    background: black;
+}
+
+.viewer-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 15px;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.7), transparent);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    z-index: 10;
+}
+
+.viewer-header .back-btn {
+    color: white;
+    font-size: 24px;
+}
+
+.viewer-content {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fullscreen-photo {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.viewer-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 15px;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10;
+}
+
+.viewer-footer button {
+    background: rgba(255,255,255,0.2);
+    border: 1px solid white;
+    color: white;
+    padding: 8px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.viewer-footer button:hover {
+    background: rgba(255,255,255,0.3);
+}
+
+#photoCounter {
+    font-size: 14px;
+}
+
+/* Rest of your existing styles below */
+/* ... (keep all your existing styles) ... */ 

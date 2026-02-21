@@ -36,12 +36,11 @@
                 <!-- Home Screen (Default) -->
                 <div class="home-screen active" id="homeScreen">
                     <!-- Michael's Face Wallpaper -->
-<div class="wallpaper">
-    <!-- Add your wallpaper image -->
-    <img src="wallpaper.jpg" alt="Michael De Santa" class="wallpaper-img">
-    <div class="wallpaper-overlay"></div>
-    <div class="wallpaper-text">MICHAEL</div>
-</div>
+                    <div class="wallpaper">
+                        <img src="wallpaper.jpg" alt="Michael De Santa" class="wallpaper-img">
+                        <div class="wallpaper-overlay"></div>
+                        <div class="wallpaper-text">MICHAEL</div>
+                    </div>
                     
                     <!-- App Grid -->
                     <div class="app-grid">
@@ -210,6 +209,37 @@
                                 <span class="call-time">2 days ago</span>
                             </div>
                         </div>
+                    </div>
+                </div>
+
+                <!-- Photos App -->
+                <div class="app-screen photos-app" id="photosApp">
+                    <div class="app-header">
+                        <button class="back-btn" onclick="phone.goHome()">←</button>
+                        <h2>Photos</h2>
+                        <span class="photo-count" id="photoCount">10 photos</span>
+                    </div>
+                    
+                    <!-- Photo Grid -->
+                    <div class="photo-grid" id="photoGrid">
+                        <!-- Photos will be loaded here by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Photo Viewer (Full Screen) -->
+                <div class="app-screen photo-viewer" id="photoViewer">
+                    <div class="viewer-header">
+                        <button class="back-btn" onclick="phone.closePhotoViewer()">←</button>
+                        <span id="photoName">Photo 1</span>
+                        <span id="photoDate">Today</span>
+                    </div>
+                    <div class="viewer-content" id="viewerContent">
+                        <img src="" alt="" id="fullscreenPhoto" class="fullscreen-photo">
+                    </div>
+                    <div class="viewer-footer">
+                        <button onclick="phone.prevPhoto()">◀ Prev</button>
+                        <span id="photoCounter">1/10</span>
+                        <button onclick="phone.nextPhoto()">Next ▶</button>
                     </div>
                 </div>
 
