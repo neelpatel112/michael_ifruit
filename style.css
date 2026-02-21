@@ -1340,3 +1340,202 @@ body {
 }
 
 /* Keep all your existing styles below */ 
+
+/* Settings App Styles */
+.settings-app {
+    background: #f2f2f7;
+}
+
+.settings-container {
+    padding: 15px;
+    overflow-y: auto;
+    height: calc(100% - 60px);
+    padding-bottom: 30px;
+}
+
+.settings-section {
+    background: white;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.section-header {
+    background: linear-gradient(145deg, #8e8e93, #6e6e73);
+    color: white;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.section-icon {
+    font-size: 24px;
+}
+
+.section-header h3 {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.section-content {
+    padding: 15px;
+}
+
+.section-desc {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+/* Ringtones List */
+.ringtones-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.ringtone-item {
+    background: #f8f8f8;
+    border-radius: 10px;
+    padding: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: 1px solid transparent;
+}
+
+.ringtone-item:hover {
+    background: #f0f0f0;
+    transform: translateX(5px);
+}
+
+.ringtone-item.selected {
+    background: #e3f2fd;
+    border: 1px solid #007aff;
+}
+
+.ringtone-info {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.ringtone-name {
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+.ringtone-file {
+    font-size: 12px;
+    color: #666;
+}
+
+.ringtone-controls {
+    display: flex;
+    gap: 8px;
+}
+
+.play-ringtone, .select-ringtone {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: transform 0.2s;
+}
+
+.play-ringtone {
+    background: #007aff;
+    color: white;
+}
+
+.select-ringtone {
+    background: #4cd964;
+    color: white;
+}
+
+.play-ringtone:hover, .select-ringtone:hover {
+    transform: scale(1.05);
+}
+
+/* Wallpapers Grid */
+.wallpapers-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.wallpaper-option {
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+}
+
+.wallpaper-preview {
+    width: 100%;
+    aspect-ratio: 9/16;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 2px solid transparent;
+    transition: all 0.3s;
+    margin-bottom: 5px;
+    background: #f0f0f0;
+}
+
+.wallpaper-option.selected .wallpaper-preview {
+    border: 2px solid #007aff;
+    transform: scale(1.02);
+}
+
+.preview-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.wallpaper-name {
+    font-size: 12px;
+    color: #666;
+}
+
+.check-indicator {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 20px;
+    height: 20px;
+    background: #007aff;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.wallpaper-option.selected .check-indicator {
+    opacity: 1;
+}
+
+/* Current Setting Display */
+.current-setting {
+    background: #f8f8f8;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 13px;
+    color: #007aff;
+    font-weight: 500;
+    margin-top: 10px;
+}
+
+/* Keep all your existing styles below */ 

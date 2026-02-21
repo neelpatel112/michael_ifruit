@@ -14,6 +14,11 @@ class MichaelPhone {
         this.audioElement = null;
         this.currentFilter = 'all';
         
+        // Settings state
+        this.selectedRingtone = 1; // Default ringtone
+        this.selectedWallpaper = 'default'; // Default wallpaper
+        this.ringtoneAudio = null;
+        
         this.messages = {
             'Jimmy': [
                 { text: 'Dad, can I borrow the car?', sent: false, time: '10:30 AM' },
@@ -46,7 +51,6 @@ class MichaelPhone {
         ];
         
         // ==================== REAL WORKING RADIO STATIONS ====================
-        // All these streams are verified to work with CORS and direct playback
         this.radioStations = [
             // POP Stations
             { 
@@ -554,6 +558,7 @@ class MichaelPhone {
         this.renderContacts();
         this.renderConversations();
         this.updateTime();
+        this.initRingtonePlayer();
         window.phone = this;
     }
     
@@ -593,6 +598,10 @@ class MichaelPhone {
                 this.showScreen('internetApp');
                 this.showEyeFind();
                 break;
+            case 'settings':
+                this.showScreen('settingsApp');
+                this.updateSettingsUI();
+                break;
             case 'camera':
                 alert('📷 Camera app - Say cheese! Michael style!');
                 break;
@@ -610,9 +619,6 @@ class MichaelPhone {
                 break;
             case 'mail':
                 alert('✉️ Mail - You have 3 unread messages from Lester');
-                break;
-            case 'settings':
-                alert('⚙️ Settings - Change wallpaper? More Michael? Always Michael!');
                 break;
             default:
                 alert(`${appName} app opening...`);
@@ -640,15 +646,144 @@ class MichaelPhone {
         this.currentScreen = 'home';
     }
     
-    // ==================== RADIO METHODS - FULLY WORKING! ====================
+    // ==================== SETTINGS APP METHODS ====================
+    
+    initRingtonePlayer() {
+        this.ringtoneAudio = new Audio();
+        this.ringtoneAudio.volume = 0.5;
+    }
+    
+    playRingtone(index) {
+        // Stop any currently playing ringtone
+        if (this.ringtoneAudio) {
+            this.ringtoneAudio.pause();
+            this.ringtoneAudio.currentTime = 0;
+        }
+        
+        // Play the selected ringtone
+        this.ringtoneAudio.src = `ringtones/${index}.mp3`;
+        this.ringtoneAudio.play().catch(e => {
+            console.log('Ringtone playback failed:', e);
+            alert(`Ringtone ${index}.mp3 not found! Please make sure the file exists in the ringtones folder.`);
+        });
+        
+        // Highlight the playing ringtone
+        document.querySelectorAll('.ringtone-item').forEach(item => {
+            item.classList.remove('playing');
+        });
+        document.getElementById(`ringtone${index}`).classList.add('playing');
+    }
+    
+    selectRingtone(index) {
+        this.selectedRingtone = index;
+        
+        // Update UI to show selected ringtone
+        document.querySelectorAll('.ringtone-item').forEach(item => {
+            item.classList.remove('selected');
+        });
+        document.getElementById(`ringtone${index}`).classList.add('selected');
+        
+        // Update current ringtone display
+        const ringtoneNames = ['Classic Tone', 'Vintage Ring', 'Digital Beep'];
+        document.getElementById('currentRingtone').innerHTML = 
+            `Current: ${ringtoneNames[index-1]} (${index}.mp3)`;
+        
+        // Play a preview
+        this.playRingtone(index);
+    }
+    
+    setWallpaper(wallpaperId) {
+        let wallpaperSrc = '';
+        let wallpaperName = '';
+        
+        if (wallpaperId === 'default') {
+            wallpaperSrc = 'wallpaper.jpg';
+            wallpaperName = 'Default';
+            this.selectedWallpaper = 'default';
+        } else {
+            wallpaperSrc = `wallpaper${wallpaperId}.jpg`;
+            const names = ['Vinewood', 'Los Santos', 'Michael\'s House'];
+            wallpaperName = names[wallpaperId - 1];
+            this.selectedWallpaper = wallpaperId;
+        }
+        
+        // Update home screen wallpaper
+        document.getElementById('wallpaperImg').src = wallpaperSrc;
+        
+        // Update UI in settings
+        document.querySelectorAll('.wallpaper-option').forEach(option => {
+            option.classList.remove('selected');
+        });
+        
+        // Find and select the correct wallpaper option
+        const selector = wallpaperId === 'default' ? 
+            '.wallpaper-option[onclick*="default"]' : 
+            `.wallpaper-option[onclick*="${wallpaperId}"]`;
+        
+        const selectedOption = document.querySelector(selector);
+        if (selectedOption) {
+            selectedOption.classList.add('selected');
+        }
+        
+        // Update check indicators
+        document.querySelectorAll('[id^="check-"]').forEach(check => {
+            check.innerHTML = '';
+        });
+        
+        if (wallpaperId === 'default') {
+            document.getElementById('check-default').innerHTML = '✓';
+        } else {
+            document.getElementById(`check-${wallpaperId}`).innerHTML = '✓';
+        }
+        
+        // Update current wallpaper display
+        document.getElementById('currentWallpaper').innerHTML = 
+            `Current: ${wallpaperName}`;
+    }
+    
+    updateSettingsUI() {
+        // Update selected ringtone
+        document.querySelectorAll('.ringtone-item').forEach(item => {
+            item.classList.remove('selected');
+        });
+        document.getElementById(`ringtone${this.selectedRingtone}`).classList.add('selected');
+        
+        // Update ringtone display
+        const ringtoneNames = ['Classic Tone', 'Vintage Ring', 'Digital Beep'];
+        document.getElementById('currentRingtone').innerHTML = 
+            `Current: ${ringtoneNames[this.selectedRingtone-1]} (${this.selectedRingtone}.mp3)`;
+        
+        // Update selected wallpaper
+        document.querySelectorAll('.wallpaper-option').forEach(option => {
+            option.classList.remove('selected');
+        });
+        
+        document.querySelectorAll('[id^="check-"]').forEach(check => {
+            check.innerHTML = '';
+        });
+        
+        if (this.selectedWallpaper === 'default') {
+            document.querySelector('.wallpaper-option[onclick*="default"]').classList.add('selected');
+            document.getElementById('check-default').innerHTML = '✓';
+            document.getElementById('currentWallpaper').innerHTML = 'Current: Default';
+        } else {
+            const selector = `.wallpaper-option[onclick*="${this.selectedWallpaper}"]`;
+            document.querySelector(selector).classList.add('selected');
+            document.getElementById(`check-${this.selectedWallpaper}`).innerHTML = '✓';
+            
+            const names = ['Vinewood', 'Los Santos', 'Michael\'s House'];
+            document.getElementById('currentWallpaper').innerHTML = 
+                `Current: ${names[this.selectedWallpaper-1]}`;
+        }
+    }
+    
+    // ==================== RADIO METHODS ====================
     
     initRadio() {
-        // Create audio element if it doesn't exist
         if (!this.audioElement) {
             this.audioElement = new Audio();
             this.audioElement.volume = 0.7;
             
-            // Set up event listeners
             this.audioElement.addEventListener('play', () => {
                 this.isPlaying = true;
                 this.updateRadioUI();
@@ -673,7 +808,6 @@ class MichaelPhone {
                 document.getElementById('radioStatus').textContent = '⚠️ Stream issue - Retrying...';
                 document.getElementById('radioStatus').style.color = '#ff3b30';
                 
-                // Auto-retry after 2 seconds
                 if (this.currentStation && this.isPlaying) {
                     setTimeout(() => {
                         if (this.currentStation && this.isPlaying) {
@@ -723,35 +857,29 @@ class MichaelPhone {
         const station = this.radioStations.find(s => s.id === stationId);
         if (!station) return;
         
-        // Stop current playback
         if (this.isPlaying) {
             this.audioElement.pause();
         }
         
         this.currentStation = station;
         
-        // Update UI immediately
         document.getElementById('stationLogo').textContent = station.icon;
         document.getElementById('currentStation').textContent = station.name;
         document.getElementById('currentFrequency').textContent = station.frequency;
         document.getElementById('currentGenre').textContent = station.description;
         document.getElementById('radioStatus').textContent = '🔄 Connecting to stream...';
         
-        // Load and play the stream
         this.audioElement.src = station.stream;
         this.audioElement.load();
         
-        // Play with promise handling
         const playPromise = this.audioElement.play();
         
         if (playPromise !== undefined) {
             playPromise.then(() => {
-                // Playback started successfully
                 this.isPlaying = true;
                 this.updateRadioUI();
                 document.getElementById('radioStatus').textContent = '🔊 Connected - Streaming Live';
             }).catch(error => {
-                // Auto-play was prevented or stream failed
                 console.log('Playback failed:', error);
                 document.getElementById('radioStatus').textContent = '⚠️ Click PLAY to start';
                 this.isPlaying = false;
@@ -764,7 +892,6 @@ class MichaelPhone {
     
     togglePlay() {
         if (!this.currentStation) {
-            // If no station selected, play the first one
             if (this.radioStations.length > 0) {
                 this.playStation(this.radioStations[0].id);
             }
@@ -781,7 +908,6 @@ class MichaelPhone {
                     this.isPlaying = true;
                     this.updateRadioUI();
                 }).catch(() => {
-                    // If play fails, reload and try again
                     this.audioElement.load();
                     this.audioElement.play().then(() => {
                         this.isPlaying = true;
@@ -801,7 +927,6 @@ class MichaelPhone {
         this.audioElement.currentTime = 0;
         this.isPlaying = false;
         
-        // Reset display but keep station info
         document.getElementById('radioStatus').textContent = '⏹️ Stopped';
         this.updateRadioUI();
         this.renderStations();
@@ -816,7 +941,6 @@ class MichaelPhone {
     filterStations(filter) {
         this.currentFilter = filter;
         
-        // Update active category button
         document.querySelectorAll('.category-btn').forEach(btn => {
             btn.classList.remove('active');
             if (btn.textContent.toLowerCase().includes(filter) || 

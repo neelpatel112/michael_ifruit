@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Michael De Santa's iFruit Phone - Working Radio!</title>
+    <title>Michael De Santa's iFruit Phone - Complete with Settings!</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -35,9 +35,9 @@
             <div class="screen" id="screen">
                 <!-- Home Screen (Default) -->
                 <div class="home-screen active" id="homeScreen">
-                    <!-- Michael's Face Wallpaper -->
-                    <div class="wallpaper">
-                        <img src="wallpaper.jpg" alt="Michael De Santa" class="wallpaper-img">
+                    <!-- Michael's Face Wallpaper (Dynamic) -->
+                    <div class="wallpaper" id="homeWallpaper">
+                        <img src="wallpaper.jpg" alt="Michael De Santa" class="wallpaper-img" id="wallpaperImg">
                         <div class="wallpaper-overlay"></div>
                         <div class="wallpaper-text">MICHAEL</div>
                     </div>
@@ -86,7 +86,7 @@
                             <span class="app-name">Photos</span>
                         </div>
                         
-                        <!-- NEW RADIO APP ICON -->
+                        <!-- Radio App Icon -->
                         <div class="app-icon" data-app="radio">
                             <div class="icon-bg" style="background: #ff3b30;">
                                 <span class="icon">📻</span>
@@ -101,6 +101,7 @@
                             <span class="app-name">Mail</span>
                         </div>
                         
+                        <!-- SETTINGS APP ICON (Updated) -->
                         <div class="app-icon" data-app="settings">
                             <div class="icon-bg" style="background: #8e8e93;">
                                 <span class="icon">⚙️</span>
@@ -251,7 +252,7 @@
                     </div>
                 </div>
 
-                <!-- RADIO APP - FULLY WORKING! -->
+                <!-- Radio App -->
                 <div class="app-screen radio-app" id="radioApp">
                     <div class="app-header">
                         <button class="back-btn" onclick="phone.goHome()">←</button>
@@ -310,6 +311,138 @@
                         <!-- Connection Notice -->
                         <div class="connection-notice" id="connectionNotice">
                             <p>📡 Streaming requires internet connection</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SETTINGS APP - FULLY FUNCTIONAL! -->
+                <div class="app-screen settings-app" id="settingsApp">
+                    <div class="app-header">
+                        <button class="back-btn" onclick="phone.goHome()">←</button>
+                        <h2>Settings</h2>
+                        <span class="settings-status">⚙️</span>
+                    </div>
+                    
+                    <div class="settings-container">
+                        <!-- RINGTONES SECTION -->
+                        <div class="settings-section">
+                            <div class="section-header">
+                                <span class="section-icon">🔔</span>
+                                <h3>Ringtones</h3>
+                            </div>
+                            <div class="section-content">
+                                <p class="section-desc">Select a ringtone (click to play)</p>
+                                
+                                <div class="ringtones-list">
+                                    <!-- Ringtone 1 -->
+                                    <div class="ringtone-item" onclick="phone.playRingtone(1)" id="ringtone1">
+                                        <div class="ringtone-info">
+                                            <span class="ringtone-name">Classic Tone</span>
+                                            <span class="ringtone-file">1.mp3</span>
+                                        </div>
+                                        <div class="ringtone-controls">
+                                            <button class="play-ringtone" onclick="event.stopPropagation(); phone.playRingtone(1)">▶️</button>
+                                            <button class="select-ringtone" onclick="event.stopPropagation(); phone.selectRingtone(1)">✓ Select</button>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Ringtone 2 -->
+                                    <div class="ringtone-item" onclick="phone.playRingtone(2)" id="ringtone2">
+                                        <div class="ringtone-info">
+                                            <span class="ringtone-name">Vintage Ring</span>
+                                            <span class="ringtone-file">2.mp3</span>
+                                        </div>
+                                        <div class="ringtone-controls">
+                                            <button class="play-ringtone" onclick="event.stopPropagation(); phone.playRingtone(2)">▶️</button>
+                                            <button class="select-ringtone" onclick="event.stopPropagation(); phone.selectRingtone(2)">✓ Select</button>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Ringtone 3 -->
+                                    <div class="ringtone-item" onclick="phone.playRingtone(3)" id="ringtone3">
+                                        <div class="ringtone-info">
+                                            <span class="ringtone-name">Digital Beep</span>
+                                            <span class="ringtone-file">3.mp3</span>
+                                        </div>
+                                        <div class="ringtone-controls">
+                                            <button class="play-ringtone" onclick="event.stopPropagation(); phone.playRingtone(3)">▶️</button>
+                                            <button class="select-ringtone" onclick="event.stopPropagation(); phone.selectRingtone(3)">✓ Select</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="current-setting" id="currentRingtone">
+                                    Current: Classic Tone (1.mp3)
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- WALLPAPER SECTION -->
+                        <div class="settings-section">
+                            <div class="section-header">
+                                <span class="section-icon">🖼️</span>
+                                <h3>Wallpaper</h3>
+                            </div>
+                            <div class="section-content">
+                                <p class="section-desc">Choose your home screen wallpaper</p>
+                                
+                                <div class="wallpapers-grid">
+                                    <!-- Wallpaper Default -->
+                                    <div class="wallpaper-option" onclick="phone.setWallpaper('default')">
+                                        <div class="wallpaper-preview" style="background: linear-gradient(145deg, #0a4d2a, #1a6a3a);">
+                                            <img src="wallpaper.jpg" alt="Default" class="preview-img">
+                                        </div>
+                                        <span class="wallpaper-name">Default</span>
+                                        <span class="check-indicator" id="check-default">✓</span>
+                                    </div>
+                                    
+                                    <!-- Wallpaper 1 -->
+                                    <div class="wallpaper-option" onclick="phone.setWallpaper(1)">
+                                        <div class="wallpaper-preview">
+                                            <img src="wallpaper1.jpg" alt="Wallpaper 1" class="preview-img">
+                                        </div>
+                                        <span class="wallpaper-name">Vinewood</span>
+                                        <span class="check-indicator" id="check-1"></span>
+                                    </div>
+                                    
+                                    <!-- Wallpaper 2 -->
+                                    <div class="wallpaper-option" onclick="phone.setWallpaper(2)">
+                                        <div class="wallpaper-preview">
+                                            <img src="wallpaper2.jpg" alt="Wallpaper 2" class="preview-img">
+                                        </div>
+                                        <span class="wallpaper-name">Los Santos</span>
+                                        <span class="check-indicator" id="check-2"></span>
+                                    </div>
+                                    
+                                    <!-- Wallpaper 3 -->
+                                    <div class="wallpaper-option" onclick="phone.setWallpaper(3)">
+                                        <div class="wallpaper-preview">
+                                            <img src="wallpaper3.jpg" alt="Wallpaper 3" class="preview-img">
+                                        </div>
+                                        <span class="wallpaper-name">Michael's House</span>
+                                        <span class="check-indicator" id="check-3"></span>
+                                    </div>
+                                </div>
+                                
+                                <div class="current-setting" id="currentWallpaper">
+                                    Current: Default
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- About Section (just for fun) -->
+                        <div class="settings-section">
+                            <div class="section-header">
+                                <span class="section-icon">ℹ️</span>
+                                <h3>About</h3>
+                            </div>
+                            <div class="section-content">
+                                <p><strong>Michael De Santa's iFruit</strong></p>
+                                <p>Model: iFruit 5s</p>
+                                <p>Storage: 64 GB</p>
+                                <p>Battery: 85%</p>
+                                <p>Software Version: GTA V 1.0</p>
+                            </div>
                         </div>
                     </div>
                 </div>
